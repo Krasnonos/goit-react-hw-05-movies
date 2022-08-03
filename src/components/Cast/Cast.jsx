@@ -10,6 +10,9 @@ import {
   DescrText,
 } from './Cast.styled';
 
+const defaultImg =
+  'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png';
+
 const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState(null);
@@ -18,17 +21,17 @@ const Cast = () => {
     getMovieCasts(movieId).then(setCast).catch(console.log);
   }, [movieId]);
 
-  if (!cast) {
-    return;
-  }
-
   return (
     <List>
-      {cast.map(({ profile_path, original_name, character, id }) => (
-        <ListItem key={id}>
+      {cast.map(({ profile_path, original_name, character, cast_id }) => (
+        <ListItem key={cast_id}>
           <ImgThumb>
             <Image
-              src={`https://image.tmdb.org/t/p/w400${profile_path}`}
+              src={
+                profile_path
+                  ? `https://image.tmdb.org/t/p/w400${profile_path}`
+                  : defaultImg
+              }
               alt={character}
             />
           </ImgThumb>

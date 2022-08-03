@@ -12,6 +12,8 @@ import {
   ImgThumb,
   Image,
 } from './MoviesPage.styled';
+const defaultImg =
+  'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png';
 
 const MoviesPage = () => {
   const [filmList, setFilmList] = useState(null);
@@ -47,7 +49,11 @@ const MoviesPage = () => {
               <ImgLink to={`${id}`}>
                 <ImgThumb>
                   <Image
-                    src={`https://image.tmdb.org/t/p/w400${backdrop_path}`}
+                    src={
+                      backdrop_path
+                        ? `https://image.tmdb.org/t/p/w400${backdrop_path}`
+                        : defaultImg
+                    }
                     alt={title}
                   />
                 </ImgThumb>

@@ -12,6 +12,9 @@ import {
   NavItem,
 } from './MovieDetails.styled';
 
+const defaultImg =
+  'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png';
+
 const MovieDetails = () => {
   const { movieId } = useParams();
 
@@ -40,7 +43,11 @@ const MovieDetails = () => {
         <FlexBox>
           <ImgThumb>
             <Image
-              src={`https://image.tmdb.org/t/p/w400${backdrop_path}`}
+              src={
+                backdrop_path
+                  ? `https://image.tmdb.org/t/p/w400${backdrop_path}`
+                  : defaultImg
+              }
               alt={original_title}
             />
           </ImgThumb>

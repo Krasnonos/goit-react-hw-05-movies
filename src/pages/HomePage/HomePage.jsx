@@ -10,6 +10,9 @@ import {
 } from './HomePage.styled';
 import { getPopularMovie } from '../../utils/apiService';
 
+const defaultImg =
+  'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png';
+
 const HomePage = () => {
   const [popularMovies, setPopularMovies] = useState(null);
 
@@ -30,7 +33,11 @@ const HomePage = () => {
             <ImgLink to={`/movies/${id}`}>
               <ImgThumb>
                 <Image
-                  src={`https://image.tmdb.org/t/p/w400${backdrop_path}`}
+                  src={
+                    backdrop_path
+                      ? `https://image.tmdb.org/t/p/w400${backdrop_path}`
+                      : defaultImg
+                  }
                   alt={title}
                 />
               </ImgThumb>

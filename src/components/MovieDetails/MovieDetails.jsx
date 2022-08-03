@@ -1,5 +1,7 @@
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { IoIosArrowBack } from 'react-icons/io';
+import { MdGroup, MdPreview } from 'react-icons/md';
 import { getMovieDetails } from '../../utils/apiService';
 import {
   FlexBox,
@@ -41,7 +43,10 @@ const MovieDetails = () => {
   return (
     <>
       <div>
-        <Link to={backUrlPath}>Go back</Link>
+        <Link to={backUrlPath}>
+          <IoIosArrowBack />
+          Go back
+        </Link>
         <FlexBox>
           <ImgThumb>
             <Image
@@ -72,10 +77,16 @@ const MovieDetails = () => {
         </FlexBox>
         <NavList>
           <NavItem>
-            <Link to="cast">Cast</Link>
+            <Link to="cast">
+              <MdGroup />
+              Cast
+            </Link>
           </NavItem>
           <NavItem>
-            <Link to="revievs">Reviews</Link>
+            <Link to="revievs">
+              <MdPreview />
+              Reviews
+            </Link>
           </NavItem>
         </NavList>
       </div>

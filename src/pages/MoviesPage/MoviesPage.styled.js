@@ -22,6 +22,8 @@ export const Input = styled.input`
 `;
 
 export const SubmitBtn = styled.button`
+  display: inline-flex;
+  align-items: center;
   margin-left: 5px;
   color: #ffffff;
   background-color: transparent;

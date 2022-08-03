@@ -1,5 +1,6 @@
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { FiSend } from 'react-icons/fi';
 import { getMoviesByName } from '../../utils/apiService';
 import {
   InputLable,
@@ -40,7 +41,10 @@ const MoviesPage = () => {
         <InputLable>
           Find movie
           <Input type="text" name="searchFilm" placeholder="Batmen" />
-          <SubmitBtn type="submit">Submit</SubmitBtn>
+          <SubmitBtn type="submit">
+            <FiSend />
+            Submit
+          </SubmitBtn>
         </InputLable>
       </form>
       {filmList && (

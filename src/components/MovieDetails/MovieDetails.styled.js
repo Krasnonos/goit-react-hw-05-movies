@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Link = styled(NavLink)`
+  display: inline-flex;
+  align-items: center;
   padding: 10px 20px;
   border: 1px solid #4caf50;
   border-radius: 5px;

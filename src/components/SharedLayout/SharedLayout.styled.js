@@ -16,6 +16,8 @@ export const Navigation = styled.nav`
 `;
 
 export const NavigationLink = styled(NavLink)`
+  display: inline-flex;
+  align-items: center;
   padding: 10px 20px;
   border: 1px solid #4caf50;
   border-radius: 5px;
@@ -47,8 +49,8 @@ export const NavigationLink = styled(NavLink)`
 `;
 
 export const ContentWrap = styled.div`
-  margin-top: 55px;
-  padding: 25px 30px;
+  padding: 0 30px;
+  padding-top: 100px;
   min-height: 100vh;
   background: linear-gradient(
     326deg,

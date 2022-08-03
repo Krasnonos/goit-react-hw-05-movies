@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { List, ListItem, DescrLable, DescrText } from './Reviews.styled';
 
 import { getMovieReviews } from '../../utils/apiService';
 
@@ -15,17 +16,18 @@ const Reviews = () => {
   if (!reviews) {
     return;
   }
-  console.log(reviews);
 
   return (
-    <ul>
+    <List>
       {reviews.map(({ id, content, author }) => (
-        <li key={id}>
-          <p>Author: {author}</p>
-          <p>{content}</p>
-        </li>
+        <ListItem key={id}>
+          <DescrLable>
+            Author: <DescrText>{author}</DescrText>
+          </DescrLable>
+          <DescrText>{content}</DescrText>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   );
 };
 

@@ -1,5 +1,13 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import {
+  Title,
+  List,
+  ListItem,
+  ImgLink,
+  TitleLink,
+  ImgThumb,
+  Image,
+} from './HomePage.styled';
 import { getPopularMovie } from '../../utils/apiService';
 
 const HomePage = () => {
@@ -15,14 +23,22 @@ const HomePage = () => {
 
   return (
     <>
-      <h1>Tranding today</h1>
-      <ul>
-        {popularMovies.map(({ title, id }) => (
-          <NavLink to={`/movies/${id}`} key={id}>
-            {title}
-          </NavLink>
+      <Title>Tranding today</Title>
+      <List>
+        {popularMovies.map(({ title, id, backdrop_path }) => (
+          <ListItem key={id}>
+            <ImgLink to={`/movies/${id}`}>
+              <ImgThumb>
+                <Image
+                  src={`https://image.tmdb.org/t/p/w400${backdrop_path}`}
+                  alt={title}
+                />
+              </ImgThumb>
+            </ImgLink>
+            <TitleLink to={`/movies/${id}`}>{title}</TitleLink>
+          </ListItem>
         ))}
-      </ul>
+      </List>
     </>
   );
 };

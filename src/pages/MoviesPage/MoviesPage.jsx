@@ -1,6 +1,17 @@
-import { NavLink, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMoviesByName } from '../../utils/apiService';
+import {
+  InputLable,
+  Input,
+  SubmitBtn,
+  List,
+  ListItem,
+  ImgLink,
+  TitleLink,
+  ImgThumb,
+  Image,
+} from './MoviesPage.styled';
 
 const MoviesPage = () => {
   const [filmList, setFilmList] = useState(null);
@@ -21,24 +32,32 @@ const MoviesPage = () => {
   };
 
   return (
-    <div>
+    <>
       <form onSubmit={submitForm}>
-        <label>
+        <InputLable>
           Find movie
-          <input type="text" name="searchFilm" placeholder="Batmen" />
-        </label>
-        <button type="submit">Submit</button>
+          <Input type="text" name="searchFilm" placeholder="Batmen" />
+          <SubmitBtn type="submit">Submit</SubmitBtn>
+        </InputLable>
       </form>
       {filmList && (
-        <ul>
-          {filmList.map(({ id, title }) => (
-            <NavLink key={id} to={`${id}`}>
-              {title}
-            </NavLink>
+        <List>
+          {filmList.map(({ id, title, backdrop_path }) => (
+            <ListItem key={id}>
+              <ImgLink to={`${id}`}>
+                <ImgThumb>
+                  <Image
+                    src={`https://image.tmdb.org/t/p/w400${backdrop_path}`}
+                    alt={title}
+                  />
+                </ImgThumb>
+              </ImgLink>
+              <TitleLink to={`${id}`}>{title}</TitleLink>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       )}
-    </div>
+    </>
   );
 };
 

@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { List, ListItem, DescrLable, DescrText } from './Reviews.styled';
+import {
+  List,
+  ListItem,
+  DescrLable,
+  DescrText,
+  EmptyText,
+} from './Reviews.styled';
 
 import { getMovieReviews } from '../../utils/apiService';
 
@@ -17,7 +23,9 @@ const Reviews = () => {
     return;
   }
 
-  return (
+  return reviews.length === 0 ? (
+    <EmptyText>We don't have any reviews for this movie</EmptyText>
+  ) : (
     <List>
       {reviews.map(({ id, content, author }) => (
         <ListItem key={id}>

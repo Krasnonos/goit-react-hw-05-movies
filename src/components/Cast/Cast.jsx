@@ -8,6 +8,7 @@ import {
   Image,
   DescrLable,
   DescrText,
+  EmptyText,
 } from './Cast.styled';
 
 const defaultImg =
@@ -21,7 +22,13 @@ const Cast = () => {
     getMovieCasts(movieId).then(setCast).catch(console.log);
   }, [movieId]);
 
-  return (
+  if (!cast) {
+    return;
+  }
+
+  return cast.length === 0 ? (
+    <EmptyText>Sorry but ve haven't casts</EmptyText>
+  ) : (
     <List>
       {cast.map(({ profile_path, original_name, character, cast_id }) => (
         <ListItem key={cast_id}>

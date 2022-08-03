@@ -41,3 +41,10 @@ export const DescrText = styled.span`
   line-height: 1.5;
   font-weight: 500;
 `;
+
+export const EmptyText = styled.p`
+  color: #ffff;
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 700;
+`;

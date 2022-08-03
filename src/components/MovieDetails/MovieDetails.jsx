@@ -1,4 +1,4 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieDetails } from '../../utils/apiService';
 import {
@@ -17,6 +17,8 @@ const defaultImg =
 
 const MovieDetails = () => {
   const { movieId } = useParams();
+  const location = useLocation();
+  const backUrlPath = location.state?.from ?? '/';
 
   const [movieInfo, setMovieInfo] = useState(null);
 
@@ -39,7 +41,7 @@ const MovieDetails = () => {
   return (
     <>
       <div>
-        <Link to="/">Go back</Link>
+        <Link to={backUrlPath}>Go back</Link>
         <FlexBox>
           <ImgThumb>
             <Image

@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import {
   Title,
@@ -15,6 +16,7 @@ const defaultImg =
 
 const HomePage = () => {
   const [popularMovies, setPopularMovies] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     getPopularMovie().then(setPopularMovies).catch(console.log);
@@ -30,7 +32,7 @@ const HomePage = () => {
       <List>
         {popularMovies.map(({ title, id, backdrop_path }) => (
           <ListItem key={id}>
-            <ImgLink to={`/movies/${id}`}>
+            <ImgLink to={`/movies/${id}`} state={{ from: location }}>
               <ImgThumb>
                 <Image
                   src={
@@ -42,7 +44,9 @@ const HomePage = () => {
                 />
               </ImgThumb>
             </ImgLink>
-            <TitleLink to={`/movies/${id}`}>{title}</TitleLink>
+            <TitleLink to={`/movies/${id}`} state={{ from: location }}>
+              {title}
+            </TitleLink>
           </ListItem>
         ))}
       </List>

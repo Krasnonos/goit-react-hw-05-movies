@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMoviesByName } from '../../utils/apiService';
 import {
@@ -18,6 +18,7 @@ const defaultImg =
 const MoviesPage = () => {
   const [filmList, setFilmList] = useState(null);
   const [searchFilter, setSearchFilter] = useSearchParams();
+  const location = useLocation();
 
   useEffect(() => {
     const filmName = searchFilter.get('filter');
@@ -46,7 +47,7 @@ const MoviesPage = () => {
         <List>
           {filmList.map(({ id, title, backdrop_path }) => (
             <ListItem key={id}>
-              <ImgLink to={`${id}`}>
+              <ImgLink to={`${id}`} state={{ from: location }}>
                 <ImgThumb>
                   <Image
                     src={
@@ -58,7 +59,9 @@ const MoviesPage = () => {
                   />
                 </ImgThumb>
               </ImgLink>
-              <TitleLink to={`${id}`}>{title}</TitleLink>
+              <TitleLink to={`${id}`} state={{ from: location }}>
+                {title}
+              </TitleLink>
             </ListItem>
           ))}
         </List>

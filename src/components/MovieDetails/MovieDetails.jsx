@@ -30,8 +30,7 @@ const MovieDetails = () => {
       .then(setMovieInfo)
       .catch(err => {
         console.log(err);
-
-        navigate('/', { replace: true });
+        navigate(backUrlPath.current, { replace: true });
       });
   }, [movieId, navigate]);
 

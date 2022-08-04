@@ -26,32 +26,36 @@ const Cast = () => {
     return;
   }
 
-  return cast.length === 0 ? (
+  const firstCastPast = cast.slice(0, 20);
+
+  return firstCastPast.length === 0 ? (
     <EmptyText>Sorry but ve haven't casts</EmptyText>
   ) : (
     <List>
-      {cast.map(({ profile_path, original_name, character, cast_id }) => (
-        <ListItem key={cast_id}>
-          <ImgThumb>
-            <Image
-              src={
-                profile_path
-                  ? `https://image.tmdb.org/t/p/w400${profile_path}`
-                  : defaultImg
-              }
-              alt={character}
-            />
-          </ImgThumb>
-          <div>
-            <DescrLable>
-              Name: <DescrText>{original_name}</DescrText>
-            </DescrLable>
-            <DescrLable>
-              Character:<DescrText>{character}</DescrText>
-            </DescrLable>
-          </div>
-        </ListItem>
-      ))}
+      {firstCastPast.map(
+        ({ profile_path, original_name, character, cast_id }) => (
+          <ListItem key={cast_id}>
+            <ImgThumb>
+              <Image
+                src={
+                  profile_path
+                    ? `https://image.tmdb.org/t/p/w400${profile_path}`
+                    : defaultImg
+                }
+                alt={character}
+              />
+            </ImgThumb>
+            <div>
+              <DescrLable>
+                Name: <DescrText>{original_name}</DescrText>
+              </DescrLable>
+              <DescrLable>
+                Character:<DescrText>{character}</DescrText>
+              </DescrLable>
+            </div>
+          </ListItem>
+        )
+      )}
     </List>
   );
 };

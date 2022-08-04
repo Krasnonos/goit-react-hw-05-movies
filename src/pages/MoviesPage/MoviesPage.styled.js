@@ -41,8 +41,7 @@ export const SubmitBtn = styled.button`
 
 export const List = styled.ul`
   margin: 0;
-  padding: 0;
-  margin-top: 20px;
+  padding: 20px 0;
   list-style: none;
 `;
 

@@ -8,8 +8,7 @@ export const Title = styled.h1`
 
 export const List = styled.ul`
   margin: 0;
-  padding: 0;
-  margin-top: 20px;
+  padding: 20px 0;
   list-style: none;
 `;
 

@@ -1,5 +1,5 @@
 import { Outlet, useLocation, useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { MdGroup, MdPreview } from 'react-icons/md';
 import { getMovieDetails } from '../../utils/apiService';
@@ -20,7 +20,7 @@ const defaultImg =
 const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
-  const backUrlPath = location.state?.from ?? '/';
+  const backUrlPath = useRef(location.state?.from ?? '/');
   const navigate = useNavigate();
 
   const [movieInfo, setMovieInfo] = useState(null);
@@ -50,7 +50,7 @@ const MovieDetails = () => {
   return (
     <>
       <div>
-        <Link to={backUrlPath}>
+        <Link to={backUrlPath.current}>
           <IoIosArrowBack />
           Go back
         </Link>
@@ -90,7 +90,7 @@ const MovieDetails = () => {
             </Link>
           </NavItem>
           <NavItem>
-            <Link to="revievs">
+            <Link to="reviews">
               <MdPreview />
               Reviews
             </Link>

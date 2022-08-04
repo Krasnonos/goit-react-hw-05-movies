@@ -1,4 +1,4 @@
-import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { MdGroup, MdPreview } from 'react-icons/md';
@@ -21,12 +21,19 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const backUrlPath = location.state?.from ?? '/';
+  const navigate = useNavigate();
 
   const [movieInfo, setMovieInfo] = useState(null);
 
   useEffect(() => {
-    getMovieDetails(movieId).then(setMovieInfo).catch(console.log);
-  }, [movieId]);
+    getMovieDetails(movieId)
+      .then(setMovieInfo)
+      .catch(err => {
+        console.log(err);
+
+        navigate('/', { replace: true });
+      });
+  }, [movieId, navigate]);
 
   if (!movieInfo) {
     return;

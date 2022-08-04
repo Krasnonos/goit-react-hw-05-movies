@@ -32,7 +32,7 @@ const MoviesPage = () => {
   const submitForm = e => {
     e.preventDefault();
     const queryString = e.target.elements.searchFilm.value;
-    setSearchFilter(queryString !== '' ? { filter: queryString } : {});
+    setSearchFilter(queryString.trim() !== '' ? { filter: queryString } : {});
   };
 
   return (
